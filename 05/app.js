@@ -9,6 +9,36 @@ const stats = {
 
 /* tutaj umieść swój kod */
 
+(function() {
+    const paragraphs = document.querySelectorAll('.text')
+
+    paragraphs.forEach(function(p) {
+        p.addEventListener('click', function(e) {
+            const pId = this.dataset.id;
+
+            if(!stats.paragraphs[pId]){
+                stats.paragraphs[pId] = 0
+            };
+            stats.paragraphs[pId]++;
+
+            const link = e.target.closest('a');
+            if(link && link.classList.contains('link') && this.contains(link)) {
+                e.preventDefault();
+
+                const href = link.getAttribute('href')
+                if(!stats.links[href]) {
+                    stats.links[href] = 0;
+                }
+
+                stats.links[href]++;
+            };
+            
+        
+        });
+
+    })
+
+})()
 
 /* nie modyfikuj kodu poniżej, ale przeanalizuj go */
 
